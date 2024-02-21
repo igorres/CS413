@@ -170,7 +170,7 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 			return data;
 		}
 
-		private void setData(E newData) {
+		public void setData(E newData) {
 			data = newData;
 		}
 

@@ -1,13 +1,24 @@
 package HW1;
 import java.util.*;
 
-public class LinkedListWithIterator<E> extends MyLList<E>{
+import HW1.MyLList.Node;
+
+public class LinkedListWithIterator<E extends Comparable<? super E>>{
 
     private Node firstNode;
     private int numberOfEntries;
 
     public LinkedListWithIterator() {
         clear();
+    }
+
+    private void clear() {
+        Comparable result = null;
+		while (firstNode != null) {
+			result = firstNode.data;
+			firstNode = firstNode.next;
+			numberOfEntries--;
+		}
     }
 
     public Iterator<E> getIterator() {
@@ -29,7 +40,7 @@ public class LinkedListWithIterator<E> extends MyLList<E>{
             if (hasNext()) {
                 Node returnNode = nextNode;
                 nextNode = nextNode.getNextNode();
-                return returnNode.getData();
+                return (E) returnNode.getData();
             }
             else {
                 throw new NoSuchElementException("Illegal call");
