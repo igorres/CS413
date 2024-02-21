@@ -1,10 +1,25 @@
+/*************************************************
+File: MyLList
+By: Igor Tello
+Date: 2/21
+Compile: 
+Usage: 
+System: 
+Description: Creates a linked list using Nodes, and the necessary methods to upkeep.
+*************************************************/
+
 package HW1;
 import java.util.*;
 
 public class MyLList<E extends Comparable<? super E>> implements ListInterface<E> {
 
-    private Node firstNode;
+    public Node firstNode;
     private int numberOfEntries;
+
+	public MyLList(){
+		firstNode = null;
+		numberOfEntries = 0;
+	}
 
     public void add(E newEntry) {
         Node newNode = new Node(newEntry);
@@ -12,7 +27,8 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 			firstNode = newNode;
 		} else { 
 			Node lastNode = getNodeAt(numberOfEntries);
-			lastNode.setNextNode(newNode); // sets lastNode.next as the newNode
+
+			lastNode.setNextNode(newNode); 
 		} 
 		numberOfEntries++;
     }
@@ -133,7 +149,6 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 			result = false;
 		} 
 		return result;
-		
 	}
 
     private boolean validPosition(int position) {
@@ -142,8 +157,8 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 
     private Node getNodeAt(int givenPosition) {
 		Node currentNode = firstNode;
-		for (int i = 1; i <= givenPosition; i++) {
-			currentNode = currentNode.next;
+		for (int i = 1; i < givenPosition; i++) {
+			currentNode = currentNode.getNextNode();
 		}
 		return currentNode;
 	}
@@ -152,7 +167,14 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 		return numberOfEntries;
 	}
 
-    public class Node {
+	public Iterator<E> getIterator(){
+		LinkedListWithIterator<E> obj = new LinkedListWithIterator<>();
+		return obj.getIterator();
+		
+	}
+
+
+	public class Node {
 		public E data;
 		public Node next;
 
@@ -178,9 +200,33 @@ public class MyLList<E extends Comparable<? super E>> implements ListInterface<E
 			return next;
 		}
 
-		private void setNextNode(Node nextNode) {
+		private void setNextNode(Node nextNode) {	
 			next = nextNode;
-		}
+		} 
 	}
+
+
+	public static void main(String[] args){
+
+        MyLList<String> linkedList = new MyLList<>();
+
+        linkedList.add("hello");
+        linkedList.add("new world");
+        linkedList.add("it has been fun");
+
+        Iterator<String> linkedListIterator = linkedList.getIterator();
+
+		System.out.println("-----------Testing--------------------");
+		System.out.println(linkedList.size());
+		System.out.println(linkedList.getEntry(0));
+		System.out.println(linkedList.getEntry(1));
+		System.out.println(linkedList.getEntry(2));
+
+
+		
+        System.out.println(linkedListIterator.next());
+		
+
+    }
 
 }

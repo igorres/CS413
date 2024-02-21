@@ -1,4 +1,15 @@
+/*************************************************
+File: ListInterface
+By: Igor Tello
+Date: 2/21
+Compile: 
+Usage: 
+System: 
+Description: Outlines the required methods needed to run and upkeep a linked list.
+*************************************************/
+
 package HW1;
+
 
 public interface ListInterface<E extends Comparable<? super E>>
 {
