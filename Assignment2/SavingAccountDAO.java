@@ -1,5 +1,5 @@
 /*************************************************
-File: CheckingAccountDAOConcrete.java
+File: SavingAccountDAOConcrete.java
 By: Igor Tello
 Date: 3/12/24
 Compile: 
@@ -14,20 +14,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-class CheckingAccountDAOConcrete implements CheckingAccountDAO {
+class SavingAccountDAO {
  
     static Connection connection = null;
     PreparedStatement pStatement;
     ResultSet result;
-    static String url = CheckingAccountDataConnection.getURL();
-    static String username = CheckingAccountDataConnection.getURL();
-    static String pwd = CheckingAccountDataConnection.getURL();
     
-    CheckingAccountDAOConcrete() {
+    SavingAccountDAO() {
 
         try {
 
-            connection = CheckingAccountDataConnection.getDBConnection();           
+            connection = SavingAccountDataConnection.getDBConnection();           
 
         } catch (SQLException se) {
             System.out.println(se.getMessage());
@@ -46,7 +43,7 @@ class CheckingAccountDAOConcrete implements CheckingAccountDAO {
     public int insert(Account acc) throws SQLException {
         
         int res = -1;
-        pStatement = connection.prepareStatement(CheckingAccountDataConnection.getInsert());
+        pStatement = connection.prepareStatement(SavingAccountDataConnection.getInsert());
         pStatement.setString(1, acc.getName());
         pStatement.setString(2, acc.getAccountNumber());
         pStatement.setDouble(3, acc.getBalance());
@@ -59,7 +56,7 @@ class CheckingAccountDAOConcrete implements CheckingAccountDAO {
     // Method to retrieve a checking account from the database by account number.
     public Account get(int anID) throws SQLException {
 
-        pStatement = connection.prepareStatement(CheckingAccountDataConnection.getSelect());
+        pStatement = connection.prepareStatement(SavingAccountDataConnection.getSelect());
         pStatement.setInt(2,anID);
         result = pStatement.executeQuery();
         
@@ -76,7 +73,7 @@ class CheckingAccountDAOConcrete implements CheckingAccountDAO {
         
         int result = -1;
         
-        pStatement = connection.prepareStatement(CheckingAccountDataConnection.getUpdate());
+        pStatement = connection.prepareStatement(SavingAccountDataConnection.getUpdate());
         pStatement.setString(1, acc.getName());
         pStatement.setString(2, acc.getAccountNumber());
         pStatement.setDouble(3, acc.getBalance());
@@ -91,7 +88,7 @@ class CheckingAccountDAOConcrete implements CheckingAccountDAO {
 
         int res = -1;
         
-        pStatement = connection.prepareStatement(CheckingAccountDataConnection.getDelete());
+        pStatement = connection.prepareStatement(SavingAccountDataConnection.getDelete());
         pStatement.setString(1,acc.getAccountNumber());
         res = pStatement.executeUpdate();
         
@@ -103,18 +100,12 @@ class CheckingAccountDAOConcrete implements CheckingAccountDAO {
         
         int res = -1;
 
-        pStatement = connection.prepareStatement(CheckingAccountDataConnection.getInsert());
+        pStatement = connection.prepareStatement(SavingAccountDataConnection.getInsert());
         pStatement.setString(1, acc.getName());
         pStatement.setString(2, acc.getAccountNumber());
         res = pStatement.executeUpdate();
 
         return res;
-    }
-
-    @Override
-    public Account get(Account e) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
     
 }

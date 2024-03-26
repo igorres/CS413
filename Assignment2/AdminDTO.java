@@ -10,13 +10,14 @@ Description: Creates an Admin DTO object
 package Assignment2;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class AdminDTO {
 
     private int id;
     private String username;
     private String email;
-    private String phone;
+    private String pwd;
 
     static AdminDAO admin = new AdminDAO();
 
@@ -24,17 +25,11 @@ public class AdminDTO {
 
     }
 
-    public AdminDTO(String username, String email, int id, String phone) {
+    public AdminDTO(String username, String email, int id, String pwd) {
         this.username = username;
         this.email = email;
         this.id = id;
-        this.phone = phone;
-    }
-
-    public AdminDTO(String username, String email, int id) {
-        this.username = username;
-        this.email = email;
-        this.id = id;
+        this.pwd = pwd;
     }
 
     // Getter and Setter methods
@@ -52,14 +47,6 @@ public class AdminDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phone;
-    }
-
-    public void setPhoneNumber(String number) {
-        this.phone = number;
     }
 
     public int getID() {
@@ -101,6 +88,25 @@ public class AdminDTO {
             System.out.println("\nUpdate Successful");
         System.out.println("Admin Details:\n" + anAdmin.toString());
         return updateResult;
+    }
+
+    public static int performCreate(Admin anAdmin) {
+        int updateResult = -1;
+        
+        try {
+            updateResult = admin.save(anAdmin);
+        } catch(SQLException se) {
+            System.out.println(se.getMessage());
+        }
+        
+        if(updateResult != -1) System.out.println("\nAdmin created successfully");
+         System.out.println("Admin details:\n" + anAdmin.toString());
+        return updateResult;        
+    }
+
+    public static HashMap validateUser(String username) {
+        return admin.validateLogin(username);
+        
     }
 
 }

@@ -19,9 +19,9 @@ import java.sql.SQLException;
 public class CheckingAccountDataConnection {
 
     // JDBC URL, username, and password of MySQL server
-    private static final String URL = "jdbc:mysql://localhost:3306/CS413";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/CS413";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "YOUR PWD HERE";
+    private static final String PASSWORD = "ZivaPup!!";
 
     // JDBC variables for opening and managing connection
     private static Connection connection;

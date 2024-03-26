@@ -14,15 +14,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+
+import javax.swing.JOptionPane;
 
 class AdminDAO implements DAOInterface<Admin> {
  
     static Connection connection = null;
     PreparedStatement pStatement;
     ResultSet result;
-    static String url = AdminDataConnection.getURL();
-    static String username = AdminDataConnection.getUsername();
-    static String pwd = AdminDataConnection.getPWD();
     
     AdminDAO() {
 
@@ -66,7 +66,7 @@ class AdminDAO implements DAOInterface<Admin> {
         
         Admin updatedAdmin = null;
         if (result.next()) {
-            updatedAdmin = new Admin( result.getString("username"), result.getString("email"), result.getInt("id"));
+            updatedAdmin = new Admin(result.getString("username"), result.getString("email"), result.getString("adminID"), result.getInt("pwd"));
         }
 
         return updatedAdmin;
@@ -106,9 +106,41 @@ class AdminDAO implements DAOInterface<Admin> {
         pStatement = connection.prepareStatement(AdminDataConnection.getInsert());
         pStatement.setString(1, admin.getUsername());
         pStatement.setString(2, admin.getEmail());
+        pStatement.setInt(3, admin.getID());
+        pStatement.setString(4, admin.getPwd());
         res = pStatement.executeUpdate();
 
         return res;
+    }
+
+    @Override
+    public Admin get(Admin e) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'get'");
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public HashMap validateLogin(String username) {
+        
+        HashMap hm = null;
+        
+        try {
+            
+            pStatement = connection.prepareStatement(AdminDataConnection.getSelect());
+            pStatement.setString(1, username);
+            result = pStatement.executeQuery();
+            
+            if (result.next()) {
+                hm = new HashMap();
+                hm.put("username", result.getString("username"));
+                hm.put("pwd", result.getString("pwd"));
+            }
+            
+        } catch( Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage() + " Try again..");
+        }
+        
+        return hm;
     }
     
 }

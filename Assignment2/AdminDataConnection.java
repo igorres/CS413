@@ -20,9 +20,9 @@ import java.sql.SQLException;
 public class AdminDataConnection {
 
     // JDBC URL, username, and password of MySQL server
-    private static final String URL = "jdbc:mysql://localhost:3306/CS413";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/CS413";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "YOUR PWD HERE";
+    private static final String PASSWORD = "ZivaPup!!";
 
     // JDBC variables for opening and managing connection
     private static Connection connection;
@@ -30,10 +30,10 @@ public class AdminDataConnection {
     private static ResultSet resultSet;
 
     // SQL queries to be used to persist business objects as needed by the DAO
-    private static final String INSERT_SQL = "INSERT INTO Admin (username, email, id, phone) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_SQL_BYID = "SELECT * FROM Admin WHERE id = ?";
-    private static final String UPDATE_SQL = "UPDATE Admin SET username = ?, email = ?, phone = ? WHERE id = ?";
-    private static final String DELETE_SQL = "DELETE FROM Adming WHERE id = ?";
+    private static final String INSERT_SQL = "INSERT INTO Admin (username, email, adminID, pwd) VALUES (?, ?, ?, ?)";
+    private static final String SELECT_SQL_BYUSERNAME = "SELECT * FROM Admin WHERE username = ?";
+    private static final String UPDATE_SQL = "UPDATE Admin SET username = ?, email = ?, pwd = ? WHERE adminID = ?";
+    private static final String DELETE_SQL = "DELETE FROM Adming WHERE adminID = ?";
 
     public AdminDataConnection() {
     }
@@ -57,7 +57,7 @@ public class AdminDataConnection {
 
     public static String getSelect() {
 
-        return SELECT_SQL_BYID;
+        return SELECT_SQL_BYUSERNAME;
     }
 
     public static String getDelete() {

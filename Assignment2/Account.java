@@ -30,6 +30,17 @@ public class Account implements AccountInterface {
         this.createdOn = System.currentTimeMillis();
     }
 
+    public Account(String name, double balance){
+        this.accountName = name;
+        this.balance = balance;
+        this.createdOn = System.currentTimeMillis();
+    }
+
+    public Account(double balance){
+        this.balance = balance;
+        this.createdOn = System.currentTimeMillis();
+    }
+
     public String getName() {
         return accountName;
     }

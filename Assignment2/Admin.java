@@ -14,23 +14,18 @@ public class Admin{
 
     private String username;
     private String email;
-    private String phone;
     private int id;
+    private String pwd;
 
     public Admin() {
         // Default constructor
     }
 
-    public Admin(String username, String email, int id) {
+    public Admin(String username, String email, String pwd, int id) {
         this.username = username;
         this.email = email;
         this.id = id;
-    }
-    public Admin(String username, String email, int id, String phone) {
-        this.username = username;
-        this.email = email;
-        this.id = id;
-        this.phone = phone;
+        this.pwd = pwd;
     }
 
     // Getter and Setter methods
@@ -57,14 +52,11 @@ public class Admin{
     public void setEmail(String email) {
         this.email = email;
     }    
-    
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String ph) {
-        this.phone = ph;
+    public String getPwd(){
+        return pwd;
     }
+    
 
     public String toString() {
 

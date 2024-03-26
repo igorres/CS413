@@ -16,23 +16,31 @@ public class Customer {
 
     String firstName;
     String lastName;
-    private CustomerAddress address;
     private Account accountNumber;
-    private int iD;
+    private String email;
     protected long createdOn;
+    private String bday;
+    private String phone;
+    private String pwd;
 
-    Customer(String first, String last, int iD, Account account) {
+    public Customer(){
+        //Default Constructor
+    }
+
+    public Customer(String first, String last, Account account) {
         this.firstName = first;
         this.lastName = last;
         this.accountNumber = account;
-        this.iD = iD;
         this.createdOn = System.currentTimeMillis();
     }
 
-    Customer(String first, String last, int iD) {
+    public Customer(String first, String last, String email, String phone, String birthdate, String pwd){
         this.firstName = first;
         this.lastName = last;
-        this.iD = iD;
+        this.email = email;
+        this.phone = phone;
+        this.bday = birthdate;
+        this.pwd = pwd;
         this.createdOn = System.currentTimeMillis();
     }
 
@@ -56,10 +64,6 @@ public class Customer {
         return this.firstName + " " + this.lastName;
     }
 
-    public CustomerAddress getCustomerAddress() {
-        return this.address;
-    }
-
     public Account getAccountNumber() {
         return this.accountNumber;
     }
@@ -68,12 +72,32 @@ public class Customer {
         return createdOn;
     }
 
-    public int getID(){
-        return iD;
+    public void setEmail(String email){
+        this.email = email;
     }
 
-    public void setID(int x){
-        this.iD = x;
+    public String getEmail(){
+        return email;
+    }
+
+    public String getPhone(){
+        return phone;
+    }
+
+    public void setPhone(String number){
+        this.phone = number;
+    }
+
+    public String getBirthday(){
+        return bday;
+    }
+
+    public String getPwd(){
+        return pwd;
+    }
+
+    public void setBirthday(String birthdate){
+        this.bday = birthdate;
     }
 
     public String toString() {
@@ -81,7 +105,7 @@ public class Customer {
         String str = "Customer object: \n";
 
         str += "First Name --> " + this.getFirstName() + "\nLast Name --> " + this.getLastName()
-                + this.getCustomerAddress().toString();
+                + "\nEmail --> " + this.email + "\nPhone --> " + this.phone;
 
         return str;
     }

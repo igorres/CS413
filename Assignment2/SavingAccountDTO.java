@@ -1,5 +1,5 @@
 /*************************************************
-File: CheckingAccountDTO.java
+File: SavingAccountDTO.java
 By: Igor Tello
 Date: 3/12/24
 Compile: 
@@ -11,7 +11,7 @@ package Assignment2;
 
 import java.sql.SQLException;
 
-public class CheckingAccountDTO {
+public class SavingAccountDTO {
     
     private int id;
     private String name;
@@ -20,17 +20,17 @@ public class CheckingAccountDTO {
    
     static CheckingAccountDAOConcrete acc = new CheckingAccountDAOConcrete();
 
-    public CheckingAccountDTO() {
+    public SavingAccountDTO() {
 
     }
 
-    public CheckingAccountDTO(String name, String number, double balance) {
+    public SavingAccountDTO(String name, String number, double balance) {
         this.name = name;
         this.accountNumber = number;
         this.balance = balance;
     }
 
-    public CheckingAccountDTO(String name, String number) {
+    public SavingAccountDTO(String name, String number) {
         this.name = name;
         this.accountNumber = number;
     }    
